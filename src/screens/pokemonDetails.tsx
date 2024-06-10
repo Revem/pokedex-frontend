@@ -1,7 +1,7 @@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import HeightIcon from '@mui/icons-material/Height';
 import LineWeightIcon from '@mui/icons-material/LineWeight';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import pokeball from '../assets/Pokeball.png';
@@ -13,7 +13,6 @@ import { AppDispatch, RootState } from '../redux/store';
 const PokemonDetail = () => {
   const { id } = useParams<{ id: string }>();
   const { pokemon, loading, error } = useSelector((state: RootState) => state.pokemon);  // Use string para id
-  const [pokemonData, setPokemon] = useState<any>(pokemon);
   const dispatch: AppDispatch = useDispatch();
   
 
@@ -37,12 +36,12 @@ const PokemonDetail = () => {
   return (
     <div className='bg-white h-[100vh] overflow-hidden'>
     <div className={`bg-pokemon-${pokemon.types[0]} h-[100vh] w-full`}>
-      <img className='absolute z-10 right-0 opacity-5 top-5 w-[60vw]' src={pokeball} />
+      <img className='absolute z-10 right-0 opacity-5 top-5 w-[60vw]' src={pokeball} alt='' />
       <PokemonRenderTypes />
       <a href='../' className='text-white text-xl absolute top-4 left-2'><ArrowBackIcon /> </a>
       <strong className='text-xl text-white absolute left-10 top-5 capitalize'>{pokemon.name}</strong>
       <strong className='text-xl text-white absolute right-10 top-5'>#{pokemon.id}</strong>
-      <img src={pokemon.official_artwork} className='absolute z-10 h-64 top-[8%] left-10' />
+      <img alt='' src={pokemon.official_artwork} className='absolute z-10 h-64 top-[8%] left-10' />
       <div className="bg-white absolute bottom-1 right-1 w-[98vw] h-[60vh] rounded-2xl p-5">
       <div className='flex justify-center'>
         <p className='w-full items-center grid gap-10 grid-cols-2 px-24 py-2'><div className='place-self-center'><PokemonType isBig={true} pokemonType={pokemon.types[0]} /></div>
